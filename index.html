@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Vega | Artista Acuarela</title>
+    <title>Nicole Dosal | Artista Acuarela</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Gilda+Display&display=swap" rel="stylesheet">
@@ -276,12 +276,15 @@
             margin: 5% auto;
             max-width: 90%;
             max-height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             animation: fadeInUp 0.4s ease;
         }
 
         .modal-content img {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
+            max-height: 85vh;
             object-fit: contain;
         }
 
@@ -295,6 +298,7 @@
             cursor: pointer;
             transition: color 0.3s ease;
             line-height: 1;
+            z-index: 1001;
         }
 
         .close-modal:hover {
@@ -445,37 +449,12 @@
                 font-size: 40px;
             }
         }
-
-        /* Placeholder images con gradientes de acuarela */
-        .placeholder-1 {
-            background: linear-gradient(135deg, #d4a5a5 0%, #e8c5b0 50%, #b8d4d4 100%);
-        }
-
-        .placeholder-2 {
-            background: linear-gradient(120deg, #a8c0d0 0%, #c8b5d8 50%, #e0c8d0 100%);
-        }
-
-        .placeholder-3 {
-            background: linear-gradient(150deg, #f0d8b8 0%, #d0b8a8 50%, #c8d0b8 100%);
-        }
-
-        .placeholder-4 {
-            background: linear-gradient(110deg, #b8d8c8 0%, #d8c8b8 50%, #c8b8d0 100%);
-        }
-
-        .placeholder-5 {
-            background: linear-gradient(140deg, #e8b8c0 0%, #d0c8e0 50%, #b8d8d8 100%);
-        }
-
-        .placeholder-6 {
-            background: linear-gradient(160deg, #c8d0b0 0%, #d8b8b0 50%, #b0c8d8 100%);
-        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <h1>Elena Vega</h1>
+        <h1>Nicole Dosal</h1>
         <p class="subtitle">Artista de Acuarela</p>
     </header>
 
@@ -502,37 +481,43 @@
     <section id="galeria">
         <h2 class="section-title">Galería</h2>
         <div class="gallery-grid">
-            <div class="gallery-item placeholder-1" onclick="openModal(this)">
+            <div class="gallery-item" onclick="openModal('imagenes/pintura1.jpeg', 'Amanecer Rosa', 'Acuarela sobre papel, 2024')">
+                <img src="imagenes/pintura1.jpeg" alt="Amanecer Rosa">
                 <div class="gallery-overlay">
                     <h3>Amanecer Rosa</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
             </div>
-            <div class="gallery-item placeholder-2" onclick="openModal(this)">
+            <div class="gallery-item" onclick="openModal('imagenes/pintura2.jpeg', 'Niebla Violeta', 'Acuarela sobre papel, 2024')">
+                <img src="imagenes/pintura2.jpeg" alt="Niebla Violeta">
                 <div class="gallery-overlay">
                     <h3>Niebla Violeta</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
             </div>
-            <div class="gallery-item placeholder-3" onclick="openModal(this)">
+            <div class="gallery-item" onclick="openModal('imagenes/pintura3.jpeg', 'Tierra Dorada', 'Acuarela sobre papel, 2023')">
+                <img src="imagenes/pintura3.jpeg" alt="Tierra Dorada">
                 <div class="gallery-overlay">
                     <h3>Tierra Dorada</h3>
                     <p>Acuarela sobre papel, 2023</p>
                 </div>
             </div>
-            <div class="gallery-item placeholder-4" onclick="openModal(this)">
+            <div class="gallery-item" onclick="openModal('imagenes/pintura4.jpeg', 'Jardín Secreto', 'Acuarela sobre papel, 2024')">
+                <img src="imagenes/pintura4.jpeg" alt="Jardín Secreto">
                 <div class="gallery-overlay">
                     <h3>Jardín Secreto</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
             </div>
-            <div class="gallery-item placeholder-5" onclick="openModal(this)">
+            <div class="gallery-item" onclick="openModal('imagenes/pintura5.jpeg', 'Susurros', 'Acuarela sobre papel, 2023')">
+                <img src="imagenes/pintura5.jpeg" alt="Susurros">
                 <div class="gallery-overlay">
                     <h3>Susurros</h3>
                     <p>Acuarela sobre papel, 2023</p>
                 </div>
             </div>
-            <div class="gallery-item placeholder-6" onclick="openModal(this)">
+            <div class="gallery-item" onclick="openModal('imagenes/pintura6.jpeg', 'Horizonte Sereno', 'Acuarela sobre papel, 2024')">
+                <img src="imagenes/pintura6.jpeg" alt="Horizonte Sereno">
                 <div class="gallery-overlay">
                     <h3>Horizonte Sereno</h3>
                     <p>Acuarela sobre papel, 2024</p>
@@ -543,9 +528,9 @@
 
     <!-- Modal -->
     <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <div id="modalImage"></div>
+            <img id="modalImage" src="" alt="">
         </div>
     </div>
 
@@ -576,7 +561,7 @@
             <a href="#" target="_blank">Pinterest</a>
             <a href="#" target="_blank">Behance</a>
         </div>
-        <p class="copyright">© 2024 Elena Vega. Todos los derechos reservados.</p>
+        <p class="copyright">© 2024 Nicole Dosal. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -595,19 +580,13 @@
         });
 
         // Modal de galería
-        function openModal(element) {
+        function openModal(imageSrc, title, description) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             
-            // Clonar el elemento para el modal
-            const clone = element.cloneNode(true);
-            clone.style.maxHeight = '85vh';
-            clone.style.width = 'auto';
-            clone.style.aspectRatio = '3/4';
-            clone.onclick = null;
+            modalImage.src = imageSrc;
+            modalImage.alt = title;
             
-            modalImage.innerHTML = '';
-            modalImage.appendChild(clone);
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -623,6 +602,11 @@
             if (event.key === 'Escape') {
                 closeModal();
             }
+        });
+
+        // Prevenir que el click en la imagen cierre el modal
+        document.getElementById('modalImage').addEventListener('click', function(event) {
+            event.stopPropagation();
         });
 
         // Formulario
