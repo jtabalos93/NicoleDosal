@@ -11,9 +11,10 @@
         :root {
             --color-paper: #faf8f5;
             --color-ink: #2a2520;
-            --color-wash: #c8bdb0;
-            --color-accent: #8b7355;
-            --color-water: #e8e3dc;
+            --color-wash: #b8c5c9;
+            --color-accent: #7a9ca5;
+            --color-water: #e8eff0;
+            --color-ocean: #a2b9bc;
             --serif: 'Cormorant Garamond', serif;
             --display: 'Gilda Display', serif;
         }
@@ -181,20 +182,28 @@
 
         /* About Section */
         #sobre-mi {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 120px 40px;
+            padding: 140px 50px;
+            background: linear-gradient(to bottom, transparent, rgba(232, 239, 240, 0.3), transparent);
         }
 
         .about-content {
             text-align: center;
-            font-size: 20px;
-            line-height: 2;
-            color: var(--color-accent);
+            font-size: 21px;
+            line-height: 2.2;
+            color: var(--color-ink);
         }
 
         .about-content p {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .about-content p:first-child {
+            font-size: 22px;
+            color: var(--color-ocean);
+            font-weight: 400;
         }
 
         /* Galería */
@@ -471,9 +480,9 @@
     <section id="sobre-mi">
         <h2 class="section-title">Sobre Mí</h2>
         <div class="about-content">
-            <p>Cada trazo es una danza entre el agua y el pigmento, un momento efímero capturado en papel.</p>
-            <p>Mi trabajo explora la transparencia y la fluidez, buscando la belleza en lo imperfecto y lo espontáneo. Especializada en paisajes contemplativos y abstracciones orgánicas.</p>
-            <p>Basada en Barcelona, mi estudio es un espacio de luz natural donde cada acuarela nace de la observación silenciosa y la intuición.</p>
+            <p>Soy fonoaudióloga de profesión y pintora por vocación. Mi vida ha sido un viaje entre los paisajes de mi natal Chile, las luces de Los Ángeles y la energía vibrante de la Ciudad de México. Esas raíces diversas nutren hoy mi paleta de colores.</p>
+            <p>Mi día a día lo dedico a la infancia, trabajando con niños con desafíos cognitivos y autismo. Esta labor me ha enseñado a observar lo invisible y a valorar la comunicación más allá de las palabras. En la acuarela encuentro ese mismo lenguaje: la paciencia del agua, la delicadeza del trazo y la belleza de lo que fluye sin prisa.</p>
+            <p>Amante de la naturaleza y, por sobre todo, del mar, busco que mis obras reflejen esa calma necesaria. Pintar es, para mí, una extensión de mi cuidado por los demás; es crear un refugio de color y luz para el alma.</p>
         </div>
     </section>
 
@@ -561,6 +570,7 @@
             <a href="#" target="_blank">Pinterest</a>
             <a href="#" target="_blank">Behance</a>
         </div>
+        <p style="font-size: 16px; color: var(--color-ocean); margin-bottom: 20px; font-style: italic; letter-spacing: 0.03em;">Arte con propósito: Cada trazo inspirado en la comunicación y la naturaleza</p>
         <p class="copyright">© 2024 Nicole Dosal. Todos los derechos reservados.</p>
     </footer>
 
