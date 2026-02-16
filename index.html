@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Vega | Artista Acuarela</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Gilda+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-paper: #faf8f5;
+            --color-ink: #2a2520;
+            --color-wash: #c8bdb0;
+            --color-accent: #8b7355;
+            --color-water: #e8e3dc;
+            --serif: 'Cormorant Garamond', serif;
+            --display: 'Gilda Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--serif);
+            background-color: var(--color-paper);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 18px;
+            overflow-x: hidden;
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            padding: 80px 20px 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--color-wash));
+            animation: fadeIn 1.5s ease-out 0.5s backwards;
+        }
+
+        h1 {
+            font-family: var(--display);
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 20px;
+            color: var(--color-ink);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--color-accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 25px 20px;
+            border-bottom: 1px solid var(--color-water);
+            animation: fadeIn 1s ease-out 0.8s backwards;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--color-ink);
+            text-decoration: none;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Secciones */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        section:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(odd) {
+            animation-delay: 0.3s;
+        }
+
+        .section-title {
+            font-family: var(--display);
+            font-size: clamp(36px, 5vw, 56px);
+            text-align: center;
+            margin-bottom: 80px;
+            font-weight: 400;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background-color: var(--color-accent);
+        }
+
+        /* About Section */
+        #sobre-mi {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        .about-content {
+            text-align: center;
+            font-size: 20px;
+            line-height: 2;
+            color: var(--color-accent);
+        }
+
+        .about-content p {
+            margin-bottom: 30px;
+        }
+
+        /* Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background-color: var(--color-water);
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(42, 37, 32, 0.9), transparent);
+            padding: 30px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-family: var(--display);
+            font-size: 24px;
+            color: var(--color-paper);
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+        .gallery-overlay p {
+            color: var(--color-wash);
+            font-size: 16px;
+        }
+
+        /* Modal de imagen */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(42, 37, 32, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 90%;
+            max-height: 85vh;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: var(--color-paper);
+            font-size: 50px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--color-accent);
+        }
+
+        /* Formulario de Contacto */
+        #contacto {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        form {
+            margin-top: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--color-wash);
+            background-color: transparent;
+            font-family: var(--serif);
+            font-size: 16px;
+            color: var(--color-ink);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--color-accent);
+            background-color: rgba(232, 227, 220, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px 40px;
+            background-color: var(--color-ink);
+            color: var(--color-paper);
+            border: none;
+            font-family: var(--serif);
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 115, 85, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--color-water);
+            margin-top: 100px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--color-ink);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: var(--color-wash);
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 20px;
+            }
+
+            nav ul {
+                gap: 25px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                max-width: 95%;
+            }
+
+            .close-modal {
+                right: 20px;
+                font-size: 40px;
+            }
+        }
+
+        /* Placeholder images con gradientes de acuarela */
+        .placeholder-1 {
+            background: linear-gradient(135deg, #d4a5a5 0%, #e8c5b0 50%, #b8d4d4 100%);
+        }
+
+        .placeholder-2 {
+            background: linear-gradient(120deg, #a8c0d0 0%, #c8b5d8 50%, #e0c8d0 100%);
+        }
+
+        .placeholder-3 {
+            background: linear-gradient(150deg, #f0d8b8 0%, #d0b8a8 50%, #c8d0b8 100%);
+        }
+
+        .placeholder-4 {
+            background: linear-gradient(110deg, #b8d8c8 0%, #d8c8b8 50%, #c8b8d0 100%);
+        }
+
+        .placeholder-5 {
+            background: linear-gradient(140deg, #e8b8c0 0%, #d0c8e0 50%, #b8d8d8 100%);
+        }
+
+        .placeholder-6 {
+            background: linear-gradient(160deg, #c8d0b0 0%, #d8b8b0 50%, #b0c8d8 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Elena Vega</h1>
+        <p class="subtitle">Artista de Acuarela</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi">
+        <h2 class="section-title">Sobre Mí</h2>
+        <div class="about-content">
+            <p>Cada trazo es una danza entre el agua y el pigmento, un momento efímero capturado en papel.</p>
+            <p>Mi trabajo explora la transparencia y la fluidez, buscando la belleza en lo imperfecto y lo espontáneo. Especializada en paisajes contemplativos y abstracciones orgánicas.</p>
+            <p>Basada en Barcelona, mi estudio es un espacio de luz natural donde cada acuarela nace de la observación silenciosa y la intuición.</p>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria">
+        <h2 class="section-title">Galería</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item placeholder-1" onclick="openModal(this)">
+                <div class="gallery-overlay">
+                    <h3>Amanecer Rosa</h3>
+                    <p>Acuarela sobre papel, 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item placeholder-2" onclick="openModal(this)">
+                <div class="gallery-overlay">
+                    <h3>Niebla Violeta</h3>
+                    <p>Acuarela sobre papel, 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item placeholder-3" onclick="openModal(this)">
+                <div class="gallery-overlay">
+                    <h3>Tierra Dorada</h3>
+                    <p>Acuarela sobre papel, 2023</p>
+                </div>
+            </div>
+            <div class="gallery-item placeholder-4" onclick="openModal(this)">
+                <div class="gallery-overlay">
+                    <h3>Jardín Secreto</h3>
+                    <p>Acuarela sobre papel, 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item placeholder-5" onclick="openModal(this)">
+                <div class="gallery-overlay">
+                    <h3>Susurros</h3>
+                    <p>Acuarela sobre papel, 2023</p>
+                </div>
+            </div>
+            <div class="gallery-item placeholder-6" onclick="openModal(this)">
+                <div class="gallery-overlay">
+                    <h3>Horizonte Sereno</h3>
+                    <p>Acuarela sobre papel, 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div id="modalImage"></div>
+        </div>
+    </div>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <h2 class="section-title">Contacto</h2>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+            </div>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Pinterest</a>
+            <a href="#" target="_blank">Behance</a>
+        </div>
+        <p class="copyright">© 2024 Elena Vega. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Modal de galería
+        function openModal(element) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            // Clonar el elemento para el modal
+            const clone = element.cloneNode(true);
+            clone.style.maxHeight = '85vh';
+            clone.style.width = 'auto';
+            clone.style.aspectRatio = '3/4';
+            clone.onclick = null;
+            
+            modalImage.innerHTML = '';
+            modalImage.appendChild(clone);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Formulario
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const mensaje = document.getElementById('mensaje').value;
+            
+            // Aquí normalmente enviarías los datos a un servidor
+            alert(`Gracias por tu mensaje, ${nombre}. Te responderé pronto a ${email}.`);
+            
+            // Limpiar formulario
+            document.getElementById('contactForm').reset();
+        }
+
+        // Animación de aparición en scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos de la galería
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
