@@ -4,131 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicole Dosal | Artista Acuarela</title>
+
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Gilda+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- PhotoSwipe CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/photoswipe.min.css">
+
     <style>
+        /* ─── Variables ──────────────────────────────────────── */
         :root {
-            --color-paper: #faf8f5;
-            --color-ink: #2a2520;
-            --color-wash: #b8c5c9;
+            --color-paper:  #faf8f5;
+            --color-ink:    #2a2520;
+            --color-wash:   #b8c5c9;
             --color-accent: #7a9ca5;
-            --color-water: #e8eff0;
-            --color-ocean: #a2b9bc;
-            --serif: 'Cormorant Garamond', serif;
-            --display: 'Gilda Display', serif;
+            --color-water:  #e8eff0;
+            --color-ocean:  #a2b9bc;
+            --color-sand:   #f5f5dc;
+            --sans:    'Lato', sans-serif;
+            --display: 'Bodoni Moda', serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--serif);
+            font-family: var(--sans);
             background-color: var(--color-paper);
             color: var(--color-ink);
-            line-height: 1.7;
-            font-size: 18px;
+            line-height: 1.9;
+            font-size: 17px;
+            font-weight: 300;
+            letter-spacing: 0.01em;
             overflow-x: hidden;
         }
 
-        /* Animación de entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* ─── Keyframes ──────────────────────────────────────── */
+        @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* ─── Scroll-reveal base ─────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1),
+                        transform 0.9s cubic-bezier(0.22,1,0.36,1);
         }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* Header */
+        /* ─── HEADER / PARALLAX ──────────────────────────────── */
         header {
             height: 500px;
-            text-align: center;
             position: relative;
             overflow: hidden;
             animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: -80px 0;
             background-image: url('imagenes/banner-final.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center top;
             background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            will-change: transform;
         }
 
-        h1 {
-            font-family: var(--display);
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            margin-bottom: 20px;
-            color: var(--color-ink);
-            /* Hacer invisible pero mantener para SEO */
+        /* Texto oculto visualmente pero accesible para SEO */
+        .sr-only {
             position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
             overflow: hidden;
-            clip: rect(0, 0, 0, 0);
+            clip: rect(0,0,0,0);
             white-space: nowrap;
             border-width: 0;
         }
 
-        .subtitle {
-            font-size: 20px;
-            color: var(--color-accent);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 300;
-            /* Hacer invisible pero mantener para SEO */
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-
-        /* Navigation */
+        /* ─── NAV ────────────────────────────────────────────── */
         nav {
             position: sticky;
             top: 0;
-            background: rgba(250, 248, 245, 0.95);
+            background: rgba(250,248,245,0.95);
             backdrop-filter: blur(10px);
-            z-index: 100;
-            padding: 25px 20px;
+            z-index: 200;
+            padding: 28px 20px;
             border-bottom: 1px solid var(--color-water);
-            animation: fadeIn 1s ease-out 0.8s backwards;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
             flex-wrap: wrap;
         }
 
         nav a {
             color: var(--color-ink);
             text-decoration: none;
-            font-size: 16px;
-            letter-spacing: 0.1em;
+            font-size: 13px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             font-weight: 400;
             position: relative;
@@ -138,44 +114,28 @@
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
+            bottom: -5px; left: 0;
+            width: 0; height: 1px;
             background-color: var(--color-accent);
             transition: width 0.3s ease;
         }
+        nav a:hover { color: var(--color-accent); }
+        nav a:hover::after { width: 100%; }
 
-        nav a:hover {
-            color: var(--color-accent);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Secciones */
+        /* ─── SECCIONES GENÉRICAS ────────────────────────────── */
         section {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 100px 40px;
-            animation: fadeInUp 1s ease-out backwards;
-        }
-
-        section:nth-child(even) {
-            animation-delay: 0.2s;
-        }
-
-        section:nth-child(odd) {
-            animation-delay: 0.3s;
+            padding: 130px 60px;
         }
 
         .section-title {
             font-family: var(--display);
-            font-size: clamp(36px, 5vw, 56px);
-            text-align: center;
-            margin-bottom: 80px;
+            font-size: clamp(34px, 4.5vw, 52px);
             font-weight: 400;
+            letter-spacing: 0.04em;
+            text-align: center;
+            margin-bottom: 90px;
             position: relative;
             display: inline-block;
             left: 50%;
@@ -185,237 +145,253 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -20px;
-            left: 50%;
+            bottom: -22px; left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 1px;
-            background-color: var(--color-accent);
+            width: 50px; height: 1px;
+            background-color: var(--color-ocean);
         }
 
-        /* About Section */
+        /* ─── SOBRE MÍ ───────────────────────────────────────── */
         #sobre-mi {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 140px 50px;
-            background: linear-gradient(to bottom, transparent, rgba(232, 239, 240, 0.3), transparent);
+            padding: 160px 60px;
+            background: linear-gradient(to bottom, transparent, rgba(232,239,240,0.3), transparent);
         }
 
         .about-content {
             text-align: center;
-            font-size: 21px;
-            line-height: 2.2;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 2.3;
             color: var(--color-ink);
         }
 
-        .about-content p {
-            margin-bottom: 35px;
-            opacity: 0.9;
-        }
+        .about-content p { margin-bottom: 40px; opacity: 0.88; }
 
         .about-content p:first-child {
-            font-size: 22px;
+            font-size: 20px;
             color: var(--color-ocean);
-            font-weight: 400;
+            font-style: italic;
+            line-height: 2.1;
         }
 
-        /* Galería */
+        /* ─── GALERÍA ────────────────────────────────────────── */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            gap: 50px;
+            margin-top: 70px;
         }
 
         .gallery-item {
+            display: block;
             position: relative;
             overflow: hidden;
             aspect-ratio: 3/4;
             background-color: var(--color-water);
-            cursor: pointer;
-            transition: transform 0.4s ease;
+            cursor: zoom-in;
+            border: 6px solid var(--color-sand);
+            outline: 1px solid rgba(245,245,220,0.6);
+            text-decoration: none;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .gallery-item:hover {
             transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(42,37,32,0.12);
         }
 
         .gallery-item img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.6s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
+        .gallery-item:hover img { transform: scale(1.08); }
 
         .gallery-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(42, 37, 32, 0.9), transparent);
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(42,37,32,0.9), transparent);
             padding: 30px 20px;
             transform: translateY(100%);
             transition: transform 0.4s ease;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
 
         .gallery-overlay h3 {
             font-family: var(--display);
-            font-size: 24px;
+            font-size: 22px;
             color: var(--color-paper);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-weight: 400;
+            letter-spacing: 0.04em;
         }
 
         .gallery-overlay p {
             color: var(--color-wash);
-            font-size: 16px;
-        }
-
-        /* Modal de imagen */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(42, 37, 32, 0.95);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            position: relative;
-            margin: 5% auto;
-            max-width: 90%;
-            max-height: 85vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeInUp 0.4s ease;
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: var(--color-paper);
-            font-size: 50px;
+            font-size: 13px;
             font-weight: 300;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            line-height: 1;
-            z-index: 1001;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
-        .close-modal:hover {
-            color: var(--color-accent);
+        /* Icono zoom en esquina */
+        .zoom-hint {
+            position: absolute;
+            top: 14px; right: 14px;
+            background: rgba(250,248,245,0.88);
+            color: var(--color-ink);
+            border-radius: 50%;
+            width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .gallery-item:hover .zoom-hint { opacity: 1; }
+
+        /* ─── SECCIÓN DEL ESTUDIO ────────────────────────────── */
+        #del-agua-al-papel {
+            background: linear-gradient(to bottom, rgba(232,239,240,0.25), transparent);
+            padding: 130px 60px;
         }
 
-        /* Formulario de Contacto */
-        #contacto {
-            max-width: 700px;
+        #del-agua-al-papel .inner {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 120px 40px;
         }
 
-        form {
-            margin-top: 60px;
+        .studio-intro {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 80px;
+            font-size: 17px;
+            line-height: 2.1;
+            color: var(--color-ink);
+            opacity: 0.8;
         }
 
-        .form-group {
-            margin-bottom: 35px;
+        /* Grid asimétrico editorial */
+        .studio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 24px;
         }
+
+        .studio-item {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--color-water);
+            cursor: zoom-in;
+            border: 4px solid var(--color-sand);
+            text-decoration: none;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .studio-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 16px 50px rgba(42,37,32,0.1);
+        }
+
+        .studio-item:nth-child(1) { aspect-ratio: 4/5; }
+        .studio-item:nth-child(2) { aspect-ratio: 1/1; align-self: end; }
+        .studio-item:nth-child(3) { aspect-ratio: 3/4; grid-row: span 2; }
+        .studio-item:nth-child(4) { aspect-ratio: 16/10; grid-column: span 2; }
+
+        .studio-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .studio-item:hover img { transform: scale(1.06); }
+
+        /* ─── FORMULARIO ─────────────────────────────────────── */
+        #contacto {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 140px 60px;
+        }
+
+        form { margin-top: 70px; }
+
+        .form-group { margin-bottom: 42px; }
 
         label {
             display: block;
-            margin-bottom: 12px;
-            font-size: 14px;
-            letter-spacing: 0.1em;
+            margin-bottom: 14px;
+            font-size: 11px;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--color-accent);
+            font-weight: 700;
+            color: var(--color-ocean);
         }
 
-        input,
-        textarea {
+        input, textarea {
             width: 100%;
-            padding: 15px 20px;
-            border: 1px solid var(--color-wash);
+            padding: 16px 0;
+            border: none;
+            border-bottom: 1px solid var(--color-wash);
             background-color: transparent;
-            font-family: var(--serif);
+            font-family: var(--sans);
             font-size: 16px;
+            font-weight: 300;
             color: var(--color-ink);
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
             outline: none;
+            border-radius: 0;
         }
 
-        input:focus,
-        textarea:focus {
-            border-color: var(--color-accent);
-            background-color: rgba(232, 227, 220, 0.3);
-        }
+        input:focus, textarea:focus { border-bottom-color: var(--color-ocean); }
 
-        textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
+        textarea { resize: vertical; min-height: 120px; padding-top: 16px; }
 
         button {
             width: 100%;
-            padding: 18px 40px;
+            padding: 20px 40px;
+            margin-top: 20px;
             background-color: var(--color-ink);
             color: var(--color-paper);
             border: none;
-            font-family: var(--serif);
-            font-size: 16px;
-            letter-spacing: 0.15em;
+            font-family: var(--sans);
+            font-size: 12px;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
+            font-weight: 400;
             cursor: pointer;
-            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             transition: left 0.5s ease;
         }
 
-        button:hover::before {
-            left: 100%;
-        }
-
+        button:hover::before { left: 100%; }
         button:hover {
             background-color: var(--color-accent);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(139, 115, 85, 0.3);
+            box-shadow: 0 10px 30px rgba(122,156,165,0.3);
         }
 
-        /* Footer */
+        /* ─── FOOTER ─────────────────────────────────────────── */
         footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             border-top: 1px solid var(--color-water);
             margin-top: 100px;
         }
@@ -423,256 +399,328 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin-bottom: 35px;
         }
 
         .social-links a {
             color: var(--color-ink);
             text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 0.1em;
+            font-size: 11px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
+            font-weight: 400;
             transition: color 0.3s ease;
         }
 
-        .social-links a:hover {
-            color: var(--color-accent);
+        .social-links a:hover { color: var(--color-ocean); }
+
+        .footer-phrase {
+            font-size: 16px;
+            color: var(--color-ocean);
+            margin-bottom: 20px;
+            font-style: italic;
+            letter-spacing: 0.03em;
         }
 
         .copyright {
-            font-size: 14px;
+            font-size: 12px;
+            font-weight: 300;
             color: var(--color-wash);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
         }
 
-        /* Responsive */
+        /* ─── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .studio-grid { grid-template-columns: 1fr 1fr; }
+            .studio-item:nth-child(3) { grid-row: auto; }
+            .studio-item:nth-child(4) { grid-column: auto; }
+        }
+
         @media (max-width: 768px) {
-            header {
-                height: 350px;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            nav ul {
-                gap: 25px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .modal-content {
-                margin: 10% auto;
-                max-width: 95%;
-            }
-
-            .close-modal {
-                right: 20px;
-                font-size: 40px;
-            }
+            header { height: 350px; }
+            section, #del-agua-al-papel { padding: 70px 24px; }
+            #sobre-mi { padding: 90px 24px; }
+            #contacto { padding: 90px 24px; }
+            nav ul { gap: 25px; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 32px; }
+            .studio-grid { grid-template-columns: 1fr; }
+            .studio-item { aspect-ratio: 4/3 !important; grid-column: auto !important; grid-row: auto !important; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Nicole Dosal</h1>
-        <p class="subtitle">Artista de Acuarela</p>
+
+    <!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+    <header id="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <h1 class="sr-only">Nicole Dosal</h1>
+        <p class="sr-only">Artista de Acuarela</p>
     </header>
 
-    <!-- Navigation -->
+    <!-- ═══ NAV ══════════════════════════════════════════════════ -->
     <nav>
         <ul>
             <li><a href="#sobre-mi">Sobre Mí</a></li>
             <li><a href="#galeria">Galería</a></li>
+            <li><a href="#del-agua-al-papel">El Estudio</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
-    <!-- Sobre Mí -->
+    <!-- ═══ SOBRE MÍ ══════════════════════════════════════════════ -->
     <section id="sobre-mi">
-        <h2 class="section-title">Sobre Mí</h2>
+        <h2 class="section-title reveal">Sobre Mí</h2>
         <div class="about-content">
-            <p>Soy fonoaudióloga de profesión y pintora por vocación. Mi vida ha sido un viaje entre los paisajes de mi natal Chile, las luces de Los Ángeles y la energía vibrante de la Ciudad de México. Esas raíces diversas nutren hoy mi paleta de colores.</p>
-            <p>Mi día a día lo dedico a la infancia, trabajando con niños con desafíos cognitivos y autismo. Esta labor me ha enseñado a observar lo invisible y a valorar la comunicación más allá de las palabras. En la acuarela encuentro ese mismo lenguaje: la paciencia del agua, la delicadeza del trazo y la belleza de lo que fluye sin prisa.</p>
-            <p>Amante de la naturaleza y, por sobre todo, del mar, busco que mis obras reflejen esa calma necesaria. Pintar es, para mí, una extensión de mi cuidado por los demás; es crear un refugio de color y luz para el alma.</p>
+            <p class="reveal" style="transition-delay:0.10s">Soy fonoaudióloga de profesión y pintora por vocación. Mi vida ha sido un viaje entre los paisajes de mi natal Chile, las luces de Los Ángeles y la energía vibrante de la Ciudad de México. Esas raíces diversas nutren hoy mi paleta de colores.</p>
+            <p class="reveal" style="transition-delay:0.22s">Mi día a día lo dedico a la infancia, trabajando con niños con desafíos cognitivos y autismo. Esta labor me ha enseñado a observar lo invisible y a valorar la comunicación más allá de las palabras. En la acuarela encuentro ese mismo lenguaje: la paciencia del agua, la delicadeza del trazo y la belleza de lo que fluye sin prisa.</p>
+            <p class="reveal" style="transition-delay:0.34s">Amante de la naturaleza y, por sobre todo, del mar, busco que mis obras reflejen esa calma necesaria. Pintar es, para mí, una extensión de mi cuidado por los demás; es crear un refugio de color y luz para el alma.</p>
         </div>
     </section>
 
-    <!-- Galería -->
+    <!-- ═══ GALERÍA ═══════════════════════════════════════════════ -->
     <section id="galeria">
-        <h2 class="section-title">Galería</h2>
+        <h2 class="section-title reveal">Galería</h2>
+
         <div class="gallery-grid">
-            <div class="gallery-item" onclick="openModal('imagenes/pintura1.jpeg', 'Amanecer Rosa', 'Acuarela sobre papel, 2024')">
+
+            <a class="gallery-item reveal"
+               href="imagenes/pintura1.jpeg"
+               data-pswp-width="1200" data-pswp-height="1600"
+               style="transition-delay:0.05s">
                 <img src="imagenes/pintura1.jpeg" alt="Amanecer Rosa">
                 <div class="gallery-overlay">
                     <h3>Amanecer Rosa</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
-            </div>
-            <div class="gallery-item" onclick="openModal('imagenes/pintura2.jpeg', 'Niebla Violeta', 'Acuarela sobre papel, 2024')">
+                <span class="zoom-hint">⊕</span>
+            </a>
+
+            <a class="gallery-item reveal"
+               href="imagenes/pintura2.jpeg"
+               data-pswp-width="1200" data-pswp-height="1600"
+               style="transition-delay:0.12s">
                 <img src="imagenes/pintura2.jpeg" alt="Niebla Violeta">
                 <div class="gallery-overlay">
                     <h3>Niebla Violeta</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
-            </div>
-            <div class="gallery-item" onclick="openModal('imagenes/pintura3.jpeg', 'Tierra Dorada', 'Acuarela sobre papel, 2023')">
+                <span class="zoom-hint">⊕</span>
+            </a>
+
+            <a class="gallery-item reveal"
+               href="imagenes/pintura3.jpeg"
+               data-pswp-width="1200" data-pswp-height="1600"
+               style="transition-delay:0.19s">
                 <img src="imagenes/pintura3.jpeg" alt="Tierra Dorada">
                 <div class="gallery-overlay">
                     <h3>Tierra Dorada</h3>
                     <p>Acuarela sobre papel, 2023</p>
                 </div>
-            </div>
-            <div class="gallery-item" onclick="openModal('imagenes/pintura4.jpeg', 'Jardín Secreto', 'Acuarela sobre papel, 2024')">
+                <span class="zoom-hint">⊕</span>
+            </a>
+
+            <a class="gallery-item reveal"
+               href="imagenes/pintura4.jpeg"
+               data-pswp-width="1200" data-pswp-height="1600"
+               style="transition-delay:0.26s">
                 <img src="imagenes/pintura4.jpeg" alt="Jardín Secreto">
                 <div class="gallery-overlay">
                     <h3>Jardín Secreto</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
-            </div>
-            <div class="gallery-item" onclick="openModal('imagenes/pintura5.jpeg', 'Susurros', 'Acuarela sobre papel, 2023')">
+                <span class="zoom-hint">⊕</span>
+            </a>
+
+            <a class="gallery-item reveal"
+               href="imagenes/pintura5.jpeg"
+               data-pswp-width="1200" data-pswp-height="1600"
+               style="transition-delay:0.33s">
                 <img src="imagenes/pintura5.jpeg" alt="Susurros">
                 <div class="gallery-overlay">
                     <h3>Susurros</h3>
                     <p>Acuarela sobre papel, 2023</p>
                 </div>
-            </div>
-            <div class="gallery-item" onclick="openModal('imagenes/pintura6.jpeg', 'Horizonte Sereno', 'Acuarela sobre papel, 2024')">
+                <span class="zoom-hint">⊕</span>
+            </a>
+
+            <a class="gallery-item reveal"
+               href="imagenes/pintura6.jpeg"
+               data-pswp-width="1200" data-pswp-height="1600"
+               style="transition-delay:0.40s">
                 <img src="imagenes/pintura6.jpeg" alt="Horizonte Sereno">
                 <div class="gallery-overlay">
                     <h3>Horizonte Sereno</h3>
                     <p>Acuarela sobre papel, 2024</p>
                 </div>
-            </div>
+                <span class="zoom-hint">⊕</span>
+            </a>
+
         </div>
     </section>
 
-    <!-- Modal -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="">
+    <!-- ═══ DEL AGUA AL PAPEL ═════════════════════════════════════ -->
+    <div id="del-agua-al-papel">
+        <div class="inner">
+            <h2 class="section-title reveal">Del Agua al Papel</h2>
+
+            <p class="studio-intro reveal" style="transition-delay:0.1s">
+                Un vistazo al proceso detrás de cada obra: los pigmentos mezclados con paciencia, los pinceles que guardan la memoria de cientos de trazos, y la luz del estudio que transforma el agua en color.
+            </p>
+
+            <div class="studio-grid">
+
+                <a class="studio-item reveal"
+                   href="imagenes/estudio1.jpeg"
+                   data-pswp-width="1200" data-pswp-height="1500"
+                   style="transition-delay:0.05s">
+                    <img src="imagenes/estudio1.jpeg" alt="Pigmentos en el estudio">
+                </a>
+
+                <a class="studio-item reveal"
+                   href="imagenes/estudio2.jpeg"
+                   data-pswp-width="1200" data-pswp-height="1200"
+                   style="transition-delay:0.15s">
+                    <img src="imagenes/estudio2.jpeg" alt="Pinceles de Nicole">
+                </a>
+
+                <a class="studio-item reveal"
+                   href="imagenes/estudio3.jpeg"
+                   data-pswp-width="1200" data-pswp-height="1600"
+                   style="transition-delay:0.25s">
+                    <img src="imagenes/estudio3.jpeg" alt="Nicole pintando">
+                </a>
+
+                <a class="studio-item reveal"
+                   href="imagenes/estudio4.jpeg"
+                   data-pswp-width="1600" data-pswp-height="1000"
+                   style="transition-delay:0.35s">
+                    <img src="imagenes/estudio4.jpeg" alt="Mesa de trabajo">
+                </a>
+
+            </div>
         </div>
     </div>
 
-    <!-- Contacto -->
+    <!-- ═══ CONTACTO ══════════════════════════════════════════════ -->
     <section id="contacto">
-        <h2 class="section-title">Contacto</h2>
+        <h2 class="section-title reveal">Contacto</h2>
         <form id="contactForm" onsubmit="handleSubmit(event)">
-            <div class="form-group">
+            <div class="form-group reveal" style="transition-delay:0.10s">
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" required>
             </div>
-            <div class="form-group">
+            <div class="form-group reveal" style="transition-delay:0.20s">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
             </div>
-            <div class="form-group">
+            <div class="form-group reveal" style="transition-delay:0.30s">
                 <label for="mensaje">Mensaje</label>
                 <textarea id="mensaje" name="mensaje" required></textarea>
             </div>
-            <button type="submit">Enviar Mensaje</button>
+            <button type="submit" class="reveal" style="transition-delay:0.40s">Enviar Mensaje</button>
         </form>
     </section>
 
-    <!-- Footer -->
+    <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
     <footer>
         <div class="social-links">
             <a href="#" target="_blank">Instagram</a>
             <a href="#" target="_blank">Pinterest</a>
             <a href="#" target="_blank">Behance</a>
         </div>
-        <p style="font-size: 16px; color: var(--color-ocean); margin-bottom: 20px; font-style: italic; letter-spacing: 0.03em;">Arte con propósito: Cada trazo inspirado en la comunicación y la naturaleza</p>
+        <p class="footer-phrase">Arte con propósito: Cada trazo inspirado en la comunicación y la naturaleza</p>
         <p class="copyright">© 2024 Nicole Dosal. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- PhotoSwipe JS (UMD) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/umd/photoswipe.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/umd/photoswipe-lightbox.umd.min.js"></script>
+
     <script>
-        // Navegación suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    /* ── 1. PARALLAX del banner ─────────────────────────────── */
+    const heroBg = document.getElementById('heroBg');
+    const hero   = document.getElementById('hero');
 
-        // Modal de galería
-        function openModal(imageSrc, title, description) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            
-            modalImage.src = imageSrc;
-            modalImage.alt = title;
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+    function applyParallax() {
+        const scrollY = window.scrollY;
+        if (scrollY < hero.offsetHeight + 300) {
+            heroBg.style.transform = `translateY(${scrollY * 0.42}px)`;
         }
+    }
+    window.addEventListener('scroll', applyParallax, { passive: true });
 
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
 
-        // Cerrar modal con tecla ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
+    /* ── 2. SCROLL-REVEAL ───────────────────────────────────── */
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObs.unobserve(entry.target);
             }
         });
+    }, { threshold: 0.10, rootMargin: '0px 0px -60px 0px' });
 
-        // Prevenir que el click en la imagen cierre el modal
-        document.getElementById('modalImage').addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-        // Formulario
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const mensaje = document.getElementById('mensaje').value;
-            
-            // Aquí normalmente enviarías los datos a un servidor
-            alert(`Gracias por tu mensaje, ${nombre}. Te responderé pronto a ${email}.`);
-            
-            // Limpiar formulario
-            document.getElementById('contactForm').reset();
+
+    /* ── 3. PHOTOSWIPE – Galería de pinturas ────────────────── */
+    const galleryLightbox = new PhotoSwipeLightbox({
+        gallery: '#galeria .gallery-grid',
+        children: 'a.gallery-item',
+        pswpModule: PhotoSwipe,
+        initialZoomLevel: 'fit',
+        secondaryZoomLevel: 2.5,
+        maxZoomLevel: 4,
+        bgOpacity: 0.97,
+        showHideAnimationType: 'fade',
+        captionContent(slide) {
+            const img = slide.data.element?.querySelector('img');
+            return img ? img.getAttribute('alt') : '';
         }
+    });
+    galleryLightbox.init();
 
-        // Animación de aparición en scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+    /* ── 4. PHOTOSWIPE – Sección del estudio ────────────────── */
+    const studioLightbox = new PhotoSwipeLightbox({
+        gallery: '#del-agua-al-papel .studio-grid',
+        children: 'a.studio-item',
+        pswpModule: PhotoSwipe,
+        initialZoomLevel: 'fit',
+        secondaryZoomLevel: 2.5,
+        maxZoomLevel: 4,
+        bgOpacity: 0.97,
+        showHideAnimationType: 'fade',
+        captionContent(slide) {
+            const img = slide.data.element?.querySelector('img');
+            return img ? img.getAttribute('alt') : '';
+        }
+    });
+    studioLightbox.init();
 
-        // Observar elementos de la galería
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            observer.observe(item);
+
+    /* ── 5. NAVEGACIÓN SUAVE ────────────────────────────────── */
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
+    });
+
+
+    /* ── 6. FORMULARIO ──────────────────────────────────────── */
+    function handleSubmit(event) {
+        event.preventDefault();
+        const nombre = document.getElementById('nombre').value;
+        const email  = document.getElementById('email').value;
+        alert(`Gracias por tu mensaje, ${nombre}. Te responderé pronto a ${email}.`);
+        document.getElementById('contactForm').reset();
+    }
     </script>
+
 </body>
 </html>
