@@ -53,23 +53,18 @@
 
         /* Header */
         header {
-            padding: 80px 20px 120px;
+            height: 500px;
             text-align: center;
             position: relative;
             overflow: hidden;
             animation: fadeIn 1.2s ease-out;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--color-wash));
-            animation: fadeIn 1.5s ease-out 0.5s backwards;
+            background-image: url('imagenes/banner-final.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         h1 {
@@ -79,7 +74,16 @@
             letter-spacing: 0.02em;
             margin-bottom: 20px;
             color: var(--color-ink);
-            animation: fadeInUp 1s ease-out 0.3s backwards;
+            /* Hacer invisible pero mantener para SEO */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         .subtitle {
@@ -88,7 +92,16 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             font-weight: 300;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
+            /* Hacer invisible pero mantener para SEO */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         /* Navigation */
@@ -435,6 +448,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            header {
+                height: 350px;
+            }
+
             section {
                 padding: 60px 20px;
             }
